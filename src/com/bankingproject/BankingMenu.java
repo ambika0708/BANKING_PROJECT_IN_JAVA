@@ -226,17 +226,17 @@ public class BankingMenu {
         System.out.println("Enter Current Address of account holder");
         String currentAdd = in.nextLine();
         BankCustomerDetails obj1 = new BankCustomerDetails(customerId, permanentAdd, currentAdd);
-        System.out.println();
-
-        System.out.println("Enter Account Opening Date (FORMAT: YYYY-MM-DD HH:MM:SS)");
-        String openingDate = in.nextLine();
+        LocalDateTime localDateTime=LocalDateTime.now();
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        String formattedDateTime = localDateTime.format(dtf);
+        System.out.println("Account Opening Date & Time Updated Successfully: "+formattedDateTime);
         System.out.println("Enter account Number ");
         String accNumber = in.nextLine();
         System.out.println("Enter account Type");
         String accType = in.nextLine();
         System.out.println("Current Account Balance");
         Long accBalance = in.nextLong();
-        BankCustomerDetails obj2 = new BankCustomerDetails(customerId, openingDate, accNumber, accType, accBalance);
+        BankCustomerDetails obj2 = new BankCustomerDetails(customerId, formattedDateTime, accNumber, accType, accBalance);
         System.out.println();
 
         CrudSqlOperations.createCustomerDetails(obj);
